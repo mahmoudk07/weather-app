@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { getCurrentLocation } from "../../utils/getCurrentLocation";
+import { getCurrentCity } from "../../utils/getCurrentCity"
 import axios from "axios"
 
 export const fetchCurrentWeather = createAsyncThunk("weather/currentWeather", async (data, thunkAPI) => {
     const {rejectWithValue} = thunkAPI;
     try {
         const { latitude, longitude } = await getCurrentLocation();
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}?key=${process.env.REACT_APP_API_KEY}&q=${latitude},${longitude}&num_of_days=7&ts=1&format=json`)
+        const country = await getCurrentCity(latitude, longitude);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}?key=${process.env.REACT_APP_API_KEY}&q=${country}&num_of_days=7&ts=1&format=json`)
         return response.data;
     } catch (error) {
         return rejectWithValue(error.response.data)
