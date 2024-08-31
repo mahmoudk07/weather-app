@@ -4,6 +4,9 @@
 
 
 @layer components {
+    .landing-container{
+        @apply flex flex-col md:flex-row md:justify-center items-center min-h-[50vh] gap-x-10 sm:gap-y-7 xs:gap-y-7
+    }
     .weather-card{
         @apply flex flex-col bg-weatherCard-bg justify-between w-[60%] md:w-[40%] xl:w-[25%] h-[270px] rounded-[15px] p-5
     }
@@ -20,7 +23,7 @@
         @apply font-bold text-[18px] text-white
     }
     .weather-details{
-        @apply text-gray-300 font-bold
+        @apply text-gray-300
     }
 }
 
