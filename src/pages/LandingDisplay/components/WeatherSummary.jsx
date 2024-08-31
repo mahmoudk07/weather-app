@@ -1,4 +1,5 @@
 import React from 'react'
+import WeatherIcon from "../../../assets/01d.png"
 const WeatherSummary = ({ data }) => {
   return (
       <div className='weather-card'>
@@ -15,12 +16,12 @@ const WeatherSummary = ({ data }) => {
         <section className = 'flex justify-between items-center'>
             <div className = 'flex flex-col gap-y-1'>
                 <p className= 'weather-details'>Clear</p>
-                <p className= 'weather-details'>Feels like 39°C</p>
-                <p className= 'weather-details'>Sunrise at 6:18 AM</p>
-                <p className= 'weather-details'>Sunset at 7:30 PM</p>
+                <p className='weather-details'>Feels like <span className = 'font-bold text-white'>39°C</span></p>
+                <p className='weather-details'>Sunrise at <span className = 'font-bold text-white'>6:18 AM</span></p>
+                <p className='weather-details'>Sunset at <span className = 'font-bold text-white'>7:30 PM</span></p>
             </div>
-            <figure className = 'w-[80px] h-[80px]'>
-                <img width={100} height={100} src="https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0008_clear_sky_night.png" alt = "weather icon" />
+            <figure className = 'w-[100px] h-[100px]'>
+                <img width={100} height={100} src = {WeatherIcon} />
             </figure>
         </section>
     </div>
@@ -40,4 +41,6 @@ export default WeatherSummary
     // done    <h1>{data?.weather[0].maxtempC}</h1>
     // done    <h1>{data?.weather[0].mintempC}</h1>
     // done    <h1>{data?.weather[0].astronomy[0].sunrise}</h1>
-    // done    <h1>{data?.weather[0].astronomy[0].sunset}</h1>
+// done    <h1>{data?.weather[0].astronomy[0].sunset}</h1>
+    
+// "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0008_clear_sky_night.png" alt = "weather icon"
