@@ -6,6 +6,9 @@ module.exports = {
       backgroundColor: {
         "weatherCard-bg": 'rgba(47, 53, 64, 255)',
       },
+      screens: {
+        'xs': '470px',
+      },
     },
   },
   plugins: [],
