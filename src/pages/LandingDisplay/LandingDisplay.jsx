@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentWeather } from "../../services/weatherInfo/weatherSlice"
 import WeatherSummary from './components/WeatherSummary';
+import WeatherMetrics from './components/WeatherMetrics'
 const LandingDisplay = () => {
     const { data, loading, error } = useSelector(state => state.Weather);
     const dispatch = useDispatch();
@@ -12,12 +13,13 @@ const LandingDisplay = () => {
             console.log(error);
         }
     }
-    // useEffect(() => {
-    //     fetchWeatherData();
-    // }, [dispatch]);
+    useEffect(() => {
+        fetchWeatherData();
+    }, [dispatch]);
   return (
-    <div className = 'flex justify-center items-center min-h-[50vh]'>
+    <div className = 'landing-container'>
         <WeatherSummary data={data} />
+        <WeatherMetrics data={data} />
     </div>
   )
 }
