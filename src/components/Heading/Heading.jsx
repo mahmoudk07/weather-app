@@ -1,9 +1,10 @@
 import React from 'react'
-
+import Select from '../Select/Select'
 const Heading = () => {
   return (
-    <div className = 'w-full h-28 flex justify-center items-center font-bold text-[30px]'>
-        <h1 className = 'text-white'>Weather App</h1>
+    <div className = 'header'>
+      <h1 className='text-white text-[30px]'>Weather App</h1>
+      <Select />
     </div>
   )
 }
