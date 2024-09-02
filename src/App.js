@@ -6,7 +6,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingDisplay />} />
-        <Route path="/city/:cityName" element={<CityDashboard />} />
+        <Route path="/city" element={<CityDashboard />} />
       </Routes>
     </BrowserRouter>
   );
