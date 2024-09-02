@@ -6,7 +6,7 @@ const RainfallChart = ({ data }) => {
     const svgRef = useRef();
     const dimensions = useResizeObserver(svgRef);  // Use the hook to get dimensions
 
-    const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+    const margin = { top: 30, right: 30, bottom: 40, left: 60 };
     const { width, height } = dimensions;
 
     // Memoize scales
@@ -36,6 +36,16 @@ const RainfallChart = ({ data }) => {
         // Rainfall bars
         drawRainfallBars(svg, data, xScale, yScale);
 
+        svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", 25)  // Adjust the value as needed
+            .attr("text-anchor", "middle")
+            .style("font-size", "14px")
+            .style("font-weight", "bold")
+            .style("fill", "#cfcfcf")
+            .classed("title", true)
+            .text("Average Daily Rainfall in mm");
+
         // Tooltip
         setupTooltips(svg, data, xScale, yScale);
 
@@ -54,7 +64,7 @@ const RainfallChart = ({ data }) => {
             .attr("height", height)
             .attr("rx", 15)
             .attr("ry", 15)
-            .attr("fill", "#1e1e1e"); // Dark background
+            .attr("fill", "#0f1b29"); // Dark background
     };
 
     const setupAxes = (svg, width, height, margin) => {
@@ -89,7 +99,7 @@ const RainfallChart = ({ data }) => {
             .attr("y", d => yScale(d.avgDailyRainfall))
             .attr("width", xScale.bandwidth())
             .attr("height", d => height - margin.bottom - yScale(d.avgDailyRainfall))
-            .attr("fill", "#ffab00"); // Accent color for bars
+            .attr("fill", "#486de8"); // Accent color for bars
     };
 
     const setupTooltips = (svg, data, xScale, yScale) => {

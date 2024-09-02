@@ -6,7 +6,7 @@ const LineChart = ({ data }) => {
     const svgRef = useRef();
     const dimensions = useResizeObserver(svgRef);  // Use the hook to get dimensions
 
-    const margin = { top: 20, right: 30, bottom: 50, left: 60 };
+    const margin = { top: 30, right: 30, bottom: 40, left: 60 };
 
     const { width, height } = dimensions;
 
@@ -32,7 +32,6 @@ const LineChart = ({ data }) => {
 
     useEffect(() => {
         const svg = d3.select(svgRef.current);
-        console.log("here")
         // Clear previous content
         svg.selectAll("*").remove();
 
@@ -45,6 +44,16 @@ const LineChart = ({ data }) => {
 
         // Temperature lines
         drawTemperatureLines(svg, data, lineMin, lineMax);
+
+        svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", 25)  // Adjust the value as needed
+            .attr("text-anchor", "middle")
+            .style("font-size", "14px")
+            .style("font-weight", "bold")
+            .style("fill", "#cfcfcf")
+            .classed("title", true)
+            .text("Min/Max Temeratures over a year in °C");
 
         // Tooltip
         setupTooltips(svg, data, xScale, yScale);
@@ -64,7 +73,7 @@ const LineChart = ({ data }) => {
             .attr("height", height)
             .attr("rx", 15)
             .attr("ry", 15)
-            .attr("fill", "#1e1e1e");
+            .attr("fill", "#0f1b29");
     };
 
     const setupAxes = (svg, data, width, height, margin) => {
@@ -93,14 +102,14 @@ const LineChart = ({ data }) => {
         svg.append("path")
             .datum(data)
             .attr("fill", "none")
-            .attr("stroke", "#ffab00")
+            .attr("stroke", "#9073cd")
             .attr("stroke-width", 2)
             .attr("d", lineMin);
 
         svg.append("path")
             .datum(data)
             .attr("fill", "none")
-            .attr("stroke", "#ff5733")
+            .attr("stroke", "#e07f9c")
             .attr("stroke-width", 2)
             .attr("d", lineMax);
     };
@@ -122,7 +131,7 @@ const LineChart = ({ data }) => {
             .attr("cx", d => xScale(d.name))
             .attr("cy", d => yScale(d.avgMinTemp))
             .attr("r", 4)
-            .attr("fill", "#ffab00")
+            .attr("fill", "#9073cd")
             .on("mouseover", (event, d) => {
                 tooltip.transition().duration(200).style("opacity", .9);
                 tooltip.html(`Min Temp: ${d.avgMinTemp}°C`)
@@ -140,7 +149,7 @@ const LineChart = ({ data }) => {
             .attr("cx", d => xScale(d.name))
             .attr("cy", d => yScale(d.absMaxTemp))
             .attr("r", 4)
-            .attr("fill", "#ff5733")
+            .attr("fill", "#e07f9c")
             .on("mouseover", (event, d) => {
                 tooltip.transition().duration(200).style("opacity", .9);
                 tooltip.html(`Max Temp: ${d.absMaxTemp}°C`)
