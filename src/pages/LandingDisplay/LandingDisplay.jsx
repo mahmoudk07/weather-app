@@ -33,15 +33,3 @@ const LandingDisplay = () => {
   )
 }
 export default LandingDisplay
-
-    // <div className = 'landing-container'>
-    //     {/* <WeatherSummary data={data} />
-    //     <WeatherMetrics data={data} /> */}
-     
-    //   </div>
-        // <div className="w-full flex justify-center">
-        //   {/* <h3 className="text-xl mb-4">Temperature Trends</h3> */}
-        //     <LineChart data={dummyClimateData} />
-        //     {/* <h3 className="text-xl mb-4">Rainfall Trends</h3> */}
-        //   <RainfallChart data={dummyClimateData} />
-        // </div>  
