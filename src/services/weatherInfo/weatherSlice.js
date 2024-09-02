@@ -19,11 +19,14 @@ export const fetchCurrentWeather = createAsyncThunk("weather/currentWeather", as
 
 // initial state for weather slice
 const initialState = {
-    data: null,
-    cities: [],
-    loading: false,
-    error: null,
-}
+  country: null,
+  currentWeather: null,
+  forecastWeather: null,
+  historicalWeather: null,
+  cities: [],
+  error: null,
+  loading: false,
+};
 
 const WeatherSlice = createSlice({
     name: "weather", 
@@ -35,7 +38,10 @@ const WeatherSlice = createSlice({
         })
         builder.addCase(fetchCurrentWeather.fulfilled, (state, action) => {
             state.loading = false;
-            state.data = action.payload.weatherData;
+            state.country = action.payload.weatherData.request[0].query.split(", ")[1];
+            state.currentWeather = action.payload.weatherData.current_condition[0];
+            state.forecastWeather = action.payload.weatherData.weather;
+            state.historicalWeather = action.payload.weatherData.ClimateAverages[0].month;
             state.cities = action.payload.cities;
         })
         builder.addCase(fetchCurrentWeather.rejected, (state, action) => {
