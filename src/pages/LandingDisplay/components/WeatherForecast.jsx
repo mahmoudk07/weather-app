@@ -7,7 +7,7 @@ const WeatherForecast = () => {
         <header>
             <h1 className= 'text-[16px] text-[#1d5a8b] font-semibold mb-4'>Weather's Forecast</h1>
         </header>
-      <div className = 'flex items-center xs:justify-center xs:gap-x-20 sm:gap-x-16 xs:px-[12%] sm:px-[0%] xl:gap-x-12 flex-wrap gap-y-8'>
+      <div className = 'flex items-center xs:justify-center xs:gap-x-20 sm:gap-x-16 xs:px-[12%] sm:px-[1%] md:px-[0%] xl:gap-x-12 flex-wrap gap-y-8'>
         <WeatherDay />
         <WeatherDay />
         <WeatherDay />
