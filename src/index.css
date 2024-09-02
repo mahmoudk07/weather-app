@@ -4,7 +4,7 @@
 
 
 @layer components {
-    .landing-container{
+    /* .landing-container{
         @apply flex flex-col md:flex-row md:justify-center items-center min-h-[50vh] gap-x-10 sm:gap-y-7 xs:gap-y-7
     }
     .weather-card{
@@ -24,6 +24,54 @@
     }
     .weather-details{
         @apply text-gray-300
+    } */
+    .header{
+        @apply w-full h-[15vh] flex flex-col justify-center items-center font-bold
+    }
+    .weather-card{
+        @apply flex flex-col xs:w-[100%] sm:w-[100%] md:w-[85%] lg:w-[70%] xl:w-[48%] xs:h-[32vh] sm:h-[38vh] bg-[#071a33] p-[3%] rounded-[15px]
+    }
+    .weather-header{
+        @apply text-[#1e5c85] font-normal xs:text-[18px] sm:text-[20px] mb-5
+    }
+    .weather-content{
+        @apply w-full flex sm:gap-x-[18%] xs:gap-x-[15%]
+    }
+    .weather-content-left{
+        @apply flex flex-col justify-center w-[40%] ml-4 gap-y-2
+    }
+    .weather-content-right{
+        @apply flex flex-col gap-y-4
+    }
+    .weather-icon{
+        @apply md:w-[100px] md:h-[100px] xs:w-[55px] xs:h-[55px] sm:w-[80px] sm:h-[80px]
+    }
+    .weather-status{
+        @apply font-bold text-[#6a899e] sm:text-[25px] xs:text-[18px]
+    }
+    .weather-info-icon{
+        @apply text-[#153d5e] sm:text-[25px] xs:text-[22px]
+    }
+    .weather-info-value{
+        @apply font-bold text-[#1f5da0] sm:text-[16px] xs:text-[14px]
+    }
+    .weather-info-type{
+        @apply text-[#24527a] sm:text-[16px] xs:text-[14px] font-bold
+    }
+    .current-location{
+        @apply font-bold sm:text-[20px] text-[#1e5c85] xs:text-[18px]
+    }
+    .current-temperature{
+        @apply font-bold text-[50px] text-[#466a9a] xs:text-[30px] sm:text-[40px]
+    }
+    .arrow-up-down{
+        @apply text-[#153d5e] sm:text-[22px] xs:text-[20px]
+    }
+    .high-low-temperature{
+        @apply text-[#2f6ea8] sm:text-[16px] xs:text-[14px] font-bold
+    }
+    .feels-like{
+        @apply text-[#305984] sm:text-[17px] xs:text-[15px] font-semibold
     }
 }
 
@@ -33,5 +81,5 @@
     box-sizing: border-box;
 }
 body {
-    background: rgba(36,34,48,255);
+    background: #050f26;
 }
