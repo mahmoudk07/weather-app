@@ -1,28 +1,23 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentWeather } from "../../services/weatherInfo/weatherSlice"
 import { Spinner } from "flowbite-react";
-// import WeatherSummary from './components/WeatherSummary';
-// import WeatherMetrics from './components/WeatherMetrics'
-// import LineChart from "../../components/LineChart/LineChart"
-// import RainfallChart from '../../components/LineChart/RainfallChart.jsx';
-// import { dummyClimateData } from "../../data.js"
 import WeatherInfo from './components/WeatherInfo.jsx';
 import WeatherForecast from './components/WeatherForecast.jsx';
 const LandingDisplay = () => {
-    const { currentWeather, loading, error } = useSelector(state => state.Weather);
+    const { currentWeather, loading } = useSelector(state => state.Weather);
     const dispatch = useDispatch();
-    const fetchWeatherData = async () => {
-        try {
-            await dispatch(fetchCurrentWeather()).unwrap();
-        } catch (error) {
-            console.log(error);
-        }
-    }
-    useEffect(() => {
-        fetchWeatherData();
-        // console.log(dummyClimateData)
+    const fetchWeatherData = useCallback(async () => {
+      try {
+        await dispatch(fetchCurrentWeather()).unwrap();
+      } catch (error) {
+        console.log(error);
+      }
     }, [dispatch]);
+  useEffect(() => {
+    // eslint-disable-next-line
+      fetchWeatherData();
+  }, [fetchWeatherData]);
   return (
     <div className='flex flex-col items-center w-full min-h-[70vh] px-[10%] gap-y-5'>
       {loading ? <div className='fixed inset-0 flex items-center justify-center bg-opacity-50 z-50'>
