@@ -1,10 +1,10 @@
 import React from 'react'
-import WeatherIcon from "../../../assets/01d.png"
 import { WiHumidity } from "react-icons/wi";
 import { WiWindBeaufort0 } from "react-icons/wi";
 import { LuGauge } from "react-icons/lu";
 import { PiArrowUpBold } from "react-icons/pi";
 import { PiArrowDownBold } from "react-icons/pi";
+import { getWeatherStatusImage } from '../../../utils/getWeatherStatusImage';
 const weatherInfo = {
     "humidity": {
         "name": "Humidity",
@@ -33,7 +33,7 @@ const WeatherInfo = ({ data, forecastWeather }) => {
                 <p className= 'current-location'>Cairo, Egypt</p>
                 <div className = 'flex items-center'>
                     <figure className = 'weather-icon'>
-                        <img className = 'w-[100%] h-[100%]' src={WeatherIcon} alt="current weather status" />
+                        <img className='w-[100%] h-[100%]' src={getWeatherStatusImage(data.weatherDesc[0].value)} alt="current weather status" />
                         <figcaption className='sr-only'>Weather icon representing current conditions</figcaption>
                     </figure>
                       <p className='current-temperature'>{ data.temp_C }°C</p> 

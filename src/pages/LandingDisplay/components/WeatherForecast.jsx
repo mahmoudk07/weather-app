@@ -18,5 +18,4 @@ const WeatherForecast = ({ forecastWeather }) => {
     </div>
   )
 }
-
 export default WeatherForecast
