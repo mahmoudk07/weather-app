@@ -12,7 +12,7 @@ const LineChart = ({ data }) => {
 
     // Memoize scales
     const xScale = useMemo(() => d3.scalePoint()
-        .domain(data.map(d => d.name))
+        .domain(data.map(d => d.name.slice(0, 3)))
         .range([margin.left, width - margin.right])
         .padding(0.5), [data, width]);
 
@@ -23,11 +23,11 @@ const LineChart = ({ data }) => {
 
     // Memoize line generators
     const lineMin = useMemo(() => d3.line()
-        .x(d => xScale(d.name))
+        .x(d => xScale(d.name.slice(0, 3)))
         .y(d => yScale(d.avgMinTemp)), [xScale, yScale]);
 
     const lineMax = useMemo(() => d3.line()
-        .x(d => xScale(d.name))
+        .x(d => xScale(d.name.slice(0, 3)))
         .y(d => yScale(d.absMaxTemp)), [xScale, yScale]);
 
     useEffect(() => {
@@ -128,7 +128,7 @@ const LineChart = ({ data }) => {
             .data(data)
             .enter()
             .append("circle")
-            .attr("cx", d => xScale(d.name))
+            .attr("cx", d => xScale(d.name.slice(0 , 3)))
             .attr("cy", d => yScale(d.avgMinTemp))
             .attr("r", 4)
             .attr("fill", "#9073cd")
@@ -146,7 +146,7 @@ const LineChart = ({ data }) => {
             .data(data)
             .enter()
             .append("circle")
-            .attr("cx", d => xScale(d.name))
+            .attr("cx", d => xScale(d.name.slice(0 , 3)))
             .attr("cy", d => yScale(d.absMaxTemp))
             .attr("r", 4)
             .attr("fill", "#e07f9c")

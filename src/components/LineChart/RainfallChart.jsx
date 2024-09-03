@@ -11,7 +11,7 @@ const RainfallChart = ({ data }) => {
 
     // Memoize scales
     const xScale = useMemo(() => d3.scaleBand()
-        .domain(data.map(d => d.name))
+        .domain(data.map(d => d.name.slice(0 , 3)))
         .range([margin.left, width - margin.right])
         .padding(0.2), [data, width]);
 
@@ -95,7 +95,7 @@ const RainfallChart = ({ data }) => {
             .enter()
             .append("rect")
             .attr("class", "bar")
-            .attr("x", d => xScale(d.name))
+            .attr("x", d => xScale(d.name.slice(0, 3)))
             .attr("y", d => yScale(d.avgDailyRainfall))
             .attr("width", xScale.bandwidth())
             .attr("height", d => height - margin.bottom - yScale(d.avgDailyRainfall))
