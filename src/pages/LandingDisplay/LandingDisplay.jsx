@@ -5,7 +5,7 @@ import { Spinner } from "flowbite-react";
 import WeatherInfo from './components/WeatherInfo.jsx';
 import WeatherForecast from './components/WeatherForecast.jsx';
 const LandingDisplay = () => {
-    const { currentWeather, loading } = useSelector(state => state.Weather);
+    const { currentWeather, forecastWeather, loading } = useSelector(state => state.Weather);
     const dispatch = useDispatch();
     const fetchWeatherData = useCallback(async () => {
       try {
@@ -25,8 +25,8 @@ const LandingDisplay = () => {
       </div> : ''}
       {!loading && currentWeather ? 
         <>
-          <WeatherInfo />
-          <WeatherForecast />
+          <WeatherInfo data={currentWeather} forecastWeather = {forecastWeather[0]} />
+          <WeatherForecast forecastWeather={forecastWeather} />
         </> : ''
       }
     </div>
