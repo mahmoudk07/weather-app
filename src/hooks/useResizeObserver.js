@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const useResizeObserver = (ref) => {
-  const [dimensions, setDimensions] = useState({ width: 500, height: 200 });
+  const [dimensions, setDimensions] = useState({ width: 470, height: 200 });
 
   useEffect(() => {
     const observeTarget = ref.current;

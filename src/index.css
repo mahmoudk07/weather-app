@@ -17,13 +17,13 @@
         @apply fixed inset-0 flex items-center justify-center bg-opacity-50 z-50
     }
     .weather-card{
-        @apply flex flex-col xs:w-[100%] sm:w-[100%] md:w-[85%] lg:w-[70%] xl:w-[48%]  bg-[#071a33] p-[4%] rounded-[15px]
+        @apply flex flex-col xs:w-[100%] sm:w-[100%] md:w-[85%] lg:w-[70%] xl:w-[48%] bg-[#071a33] p-[4%] rounded-[15px] 
     }
     .weather-header{
         @apply text-[#1e5c85] font-normal xs:text-[18px] sm:text-[20px] mb-5
     }
     .weather-content{
-        @apply w-full flex sm:gap-x-[18%] xs:gap-x-[15%]
+        @apply w-full flex sm:gap-x-[16%] xs:gap-x-[15%]
     }
     .weather-content-left{
         @apply flex flex-col justify-center w-[40%] ml-4 gap-y-2
@@ -32,7 +32,7 @@
         @apply flex flex-col gap-y-4
     }
     .weather-icon{
-        @apply md:w-[90px] md:h-[90px] xs:w-[55px] xs:h-[55px] sm:w-[80px] sm:h-[80px] xl:w-[90px] xl:h-[90px]
+        @apply lg:w-[70px] lg:h-[70px] md:w-[90px] md:h-[90px] xs:w-[55px] xs:h-[55px] sm:w-[80px] sm:h-[80px] xl:w-[90px] xl:h-[90px]
     }
     .weather-status{
         @apply font-bold text-[#6a899e] sm:text-[25px] xs:text-[18px]
