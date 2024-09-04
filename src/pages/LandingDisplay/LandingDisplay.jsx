@@ -6,7 +6,7 @@ import Select from "../../components/Select/Select.jsx"
 import WeatherSummary from '../../components/Weather/WeatherSummary/WeatherSummary.jsx';
 import WeatherForecast from '../../components/Weather/WeatherForecast/WeatherForecast.jsx';
 const LandingDisplay = () => {
-    const { currentWeather, forecastWeather, loading } = useSelector(state => state.Weather);
+    const { currentWeather, forecastWeather, loading, city } = useSelector(state => state.Weather);
     const dispatch = useDispatch();
     const fetchWeatherData = useCallback(async (city) => {
       try {
@@ -27,7 +27,7 @@ const LandingDisplay = () => {
         </div> : ''}
         {!loading && currentWeather ?
           <>
-            <WeatherSummary data={currentWeather} forecastWeather={forecastWeather[0]} />
+            <WeatherSummary data={currentWeather} forecastWeather={forecastWeather[0]} currentCity = {city} />
             <WeatherForecast forecastWeather={forecastWeather} />
           </> : ''
         }
