@@ -1,9 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-const Select = () => {
-    const { cities } = useSelector(state => state.Weather)
+const Select = ({ onSelectChange }) => {
+  const { cities } = useSelector(state => state.Weather)
+  const handleChange = (e) => {
+    onSelectChange(e.target.value)
+  }
   return (
-    <select className='select'>
+    <select className='select' onChange={handleChange}>
         <option value="" disabled selected hidden>
             Select a city
         </option>
