@@ -1,37 +1,28 @@
 import React, { useRef, useEffect, useMemo } from "react";
 import * as d3 from "d3";
-import useResizeObserver from "../../hooks/useResizeObserver";  // Import the custom hook
+import useResizeObserver from "../../../hooks/useResizeObserver";  // Import the custom hook
 
-const LineChart = ({ data }) => {
+const RainfallChart = ({ data }) => {
     const svgRef = useRef();
     const dimensions = useResizeObserver(svgRef);  // Use the hook to get dimensions
 
     const margin = { top: 30, right: 30, bottom: 40, left: 60 };
-
     const { width, height } = dimensions;
 
     // Memoize scales
-    const xScale = useMemo(() => d3.scalePoint()
-        .domain(data.map(d => d.name.slice(0, 3)))
+    const xScale = useMemo(() => d3.scaleBand()
+        .domain(data.map(d => d.name.slice(0 , 3)))
         .range([margin.left, width - margin.right])
-        .padding(0.5), [data, width]);
+        .padding(0.2), [data, width]);
 
     const yScale = useMemo(() => d3.scaleLinear()
-        .domain([0, d3.max(data, d => Math.max(d.absMaxTemp, d.avgMinTemp))])
+        .domain([0, d3.max(data, d => d.avgDailyRainfall)])
         .nice()
         .range([height - margin.bottom, margin.top]), [data, height]);
 
-    // Memoize line generators
-    const lineMin = useMemo(() => d3.line()
-        .x(d => xScale(d.name.slice(0, 3)))
-        .y(d => yScale(d.avgMinTemp)), [xScale, yScale]);
-
-    const lineMax = useMemo(() => d3.line()
-        .x(d => xScale(d.name.slice(0, 3)))
-        .y(d => yScale(d.absMaxTemp)), [xScale, yScale]);
-
     useEffect(() => {
         const svg = d3.select(svgRef.current);
+
         // Clear previous content
         svg.selectAll("*").remove();
 
@@ -40,10 +31,10 @@ const LineChart = ({ data }) => {
         setupBackground(svg, width, height);
 
         // Axes
-        setupAxes(svg, data, width, height, margin);
+        setupAxes(svg, width, height, margin);
 
-        // Temperature lines
-        drawTemperatureLines(svg, data, lineMin, lineMax);
+        // Rainfall bars
+        drawRainfallBars(svg, data, xScale, yScale);
 
         svg.append("text")
             .attr("x", width / 2)
@@ -53,12 +44,12 @@ const LineChart = ({ data }) => {
             .style("font-weight", "bold")
             .style("fill", "#cfcfcf")
             .classed("title", true)
-            .text("Min/Max Temeratures over a year in °C");
+            .text("Average Daily Rainfall in mm");
 
         // Tooltip
         setupTooltips(svg, data, xScale, yScale);
 
-    }, [data, dimensions, lineMin, lineMax, xScale, yScale]);
+    }, [data, dimensions, xScale, yScale]);
 
     const setupSvg = (svg, width, height) => {
         svg
@@ -73,86 +64,58 @@ const LineChart = ({ data }) => {
             .attr("height", height)
             .attr("rx", 15)
             .attr("ry", 15)
-            .attr("fill", "#0f1b29");
+            .attr("fill", "#0f1b29"); // Dark background
     };
 
-    const setupAxes = (svg, data, width, height, margin) => {
+    const setupAxes = (svg, width, height, margin) => {
         svg.append("g")
             .attr("transform", `translate(0,${height - margin.bottom})`)
             .call(d3.axisBottom(xScale).tickSizeOuter(0))
             .selectAll("text")
-            .attr("fill", "#cfcfcf")
+            .attr("fill", "#e0e0e0") // Light text color
             .style("font-weight", "bold");
 
         svg.append("g")
             .attr("transform", `translate(${margin.left},0)`)
             .call(d3.axisLeft(yScale).ticks(6).tickSize(-width + margin.left + margin.right))
             .selectAll("text")
-            .attr("fill", "#cfcfcf")
+            .attr("fill", "#e0e0e0") // Light text color
             .style("font-weight", "bold");
 
         svg.selectAll(".tick line")
-            .attr("stroke", "#555")
+            .attr("stroke", "#555555") // Darker line color
             .attr("stroke-width", 1);
 
         svg.selectAll(".domain").remove();
     };
 
-    const drawTemperatureLines = (svg, data, lineMin, lineMax) => {
-        svg.append("path")
-            .datum(data)
-            .attr("fill", "none")
-            .attr("stroke", "#9073cd")
-            .attr("stroke-width", 2)
-            .attr("d", lineMin);
-
-        svg.append("path")
-            .datum(data)
-            .attr("fill", "none")
-            .attr("stroke", "#e07f9c")
-            .attr("stroke-width", 2)
-            .attr("d", lineMax);
+    const drawRainfallBars = (svg, data, xScale, yScale) => {
+        svg.selectAll(".bar")
+            .data(data)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", d => xScale(d.name.slice(0, 3)))
+            .attr("y", d => yScale(d.avgDailyRainfall))
+            .attr("width", xScale.bandwidth())
+            .attr("height", d => height - margin.bottom - yScale(d.avgDailyRainfall))
+            .attr("fill", "#486de8"); // Accent color for bars
     };
 
     const setupTooltips = (svg, data, xScale, yScale) => {
         const tooltip = d3.select("body").append("div")
             .attr("class", "tooltip")
             .style("position", "absolute")
-            .style("background-color", "#333")
-            .style("color", "#fff")
+            .style("background-color", "#333333") // Dark tooltip background
+            .style("color", "#e0e0e0") // Light tooltip text color
             .style("padding", "5px 10px")
             .style("border-radius", "4px")
             .style("opacity", 0);
 
-        svg.selectAll(".dotMin")
-            .data(data)
-            .enter()
-            .append("circle")
-            .attr("cx", d => xScale(d.name.slice(0 , 3)))
-            .attr("cy", d => yScale(d.avgMinTemp))
-            .attr("r", 4)
-            .attr("fill", "#9073cd")
+        svg.selectAll(".bar")
             .on("mouseover", (event, d) => {
                 tooltip.transition().duration(200).style("opacity", .9);
-                tooltip.html(`Min Temp: ${d.avgMinTemp}°C`)
-                    .style("left", (event.pageX + 5) + "px")
-                    .style("top", (event.pageY - 28) + "px");
-            })
-            .on("mouseout", () => {
-                tooltip.transition().duration(500).style("opacity", 0);
-            });
-
-        svg.selectAll(".dotMax")
-            .data(data)
-            .enter()
-            .append("circle")
-            .attr("cx", d => xScale(d.name.slice(0 , 3)))
-            .attr("cy", d => yScale(d.absMaxTemp))
-            .attr("r", 4)
-            .attr("fill", "#e07f9c")
-            .on("mouseover", (event, d) => {
-                tooltip.transition().duration(200).style("opacity", .9);
-                tooltip.html(`Max Temp: ${d.absMaxTemp}°C`)
+                tooltip.html(`Rainfall: ${d.avgDailyRainfall} mm`)
                     .style("left", (event.pageX + 5) + "px")
                     .style("top", (event.pageY - 28) + "px");
             })
@@ -167,5 +130,4 @@ const LineChart = ({ data }) => {
         </div>
     );
 };
-
-export default LineChart;
+export default RainfallChart;
