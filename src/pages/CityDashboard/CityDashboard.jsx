@@ -7,7 +7,7 @@ import WeatherForecast from '../../components/Weather/WeatherForecast/WeatherFor
 import LineChart from '../../components/Charts/LineChart/LineChart'
 import RainfallChart from "../../components/Charts/RainfallChart/RainfallChart"
 const CityDashboard = () => {
-  const { loading, currentWeather, forecastWeather, historicalWeather, city, fetchWeatherData } = useWeatherData();
+  const { loading, currentWeather, forecastWeather, historicalWeather, city, country, fetchWeatherData } = useWeatherData();
   useEffect(() => {
     // eslint-disable-next-line
     fetchWeatherData(city);
@@ -23,7 +23,7 @@ const CityDashboard = () => {
       {!loading && currentWeather && ( 
         <>
           <div className='weather-dashboard-upper'>
-            <WeatherSummary data={currentWeather} forecastWeather={forecastWeather[0]} currentCity={city} />
+            <WeatherSummary data={currentWeather} forecastWeather={forecastWeather[0]} currentCity={city} currentCountry={country} />
             <LineChart data={historicalWeather} />
           </div>
           <div className='weather-dashboard-lower'>

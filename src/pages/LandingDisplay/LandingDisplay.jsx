@@ -5,7 +5,7 @@ import Select from "../../components/Select/Select.jsx"
 import WeatherSummary from '../../components/Weather/WeatherSummary/WeatherSummary.jsx';
 import WeatherForecast from '../../components/Weather/WeatherForecast/WeatherForecast.jsx';
 const LandingDisplay = () => {
-    const { currentWeather, forecastWeather, loading, city, fetchWeatherData } = useWeatherData();
+    const { currentWeather, forecastWeather, loading, city, country, fetchWeatherData } = useWeatherData();
     useEffect(() => {
         fetchWeatherData();
     }, [fetchWeatherData]);
@@ -17,7 +17,7 @@ const LandingDisplay = () => {
         </div> )}
         {!loading && currentWeather && (
           <>
-            <WeatherSummary data={currentWeather} forecastWeather={forecastWeather[0]} currentCity = {city} />
+            <WeatherSummary data={currentWeather} forecastWeather={forecastWeather[0]} currentCity = {city} currentCountry = {country} />
             <WeatherForecast forecastWeather={forecastWeather} />
           </>
       )}

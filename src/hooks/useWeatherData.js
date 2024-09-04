@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentWeather } from "../services/weatherInfo/weatherSlice";
 
 const useWeatherData = () => {
-  const { currentWeather, forecastWeather, loading, city, historicalWeather } = useSelector((state) => state.Weather);
+  const { currentWeather, forecastWeather, loading, city, historicalWeather, country } = useSelector((state) => state.Weather);
   const dispatch = useDispatch();
     
   // fetch weather based on selected ciy
@@ -23,6 +23,7 @@ const useWeatherData = () => {
     loading,
     city,
     historicalWeather,
+    country,
     fetchWeatherData,
   };
 };
