@@ -13,16 +13,16 @@ const weatherInfo = {
     },
     "windspeedKmph": {
         "name": "Wind",
-        "icon": < WiWindBeaufort0 className='weather-info-icon' />,
+        "icon": <WiWindBeaufort0 className='weather-info-icon' />,
         "unit": "km/h"
     },
     "pressure": {
         "name": "Pressure",
-        "icon": < LuGauge className='weather-info-icon' />,
+        "icon": <LuGauge className='weather-info-icon' />,
         "unit": "mb"
     },
 }
-const WeatherSummary = ({ data, forecastWeather }) => {
+const WeatherSummary = ({ data, forecastWeather, currentCity }) => {
   return (
     <section className= 'weather-card'>
         <header>
@@ -30,7 +30,7 @@ const WeatherSummary = ({ data, forecastWeather }) => {
         </header>
         <main className = 'weather-content'>
             <div className = 'weather-content-left'>
-                <p className= 'current-location'>Cairo, Egypt</p>
+                <p className='current-location'>{currentCity}</p>
                 <div className = 'flex items-center'>
                     <figure className = 'weather-icon'>
                         <img className='w-[100%] h-[100%]' src={getWeatherStatusImage(data.weatherDesc[0].value)} alt="current weather status" />
