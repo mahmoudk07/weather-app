@@ -9,7 +9,6 @@ import RainfallChart from "../../components/Charts/RainfallChart/RainfallChart"
 const CityDashboard = () => {
   const { loading, currentWeather, forecastWeather, historicalWeather, city, country, fetchWeatherData } = useWeatherData();
   useEffect(() => {
-    // eslint-disable-next-line
     fetchWeatherData(city);
   }, [fetchWeatherData, city]);
   return (
