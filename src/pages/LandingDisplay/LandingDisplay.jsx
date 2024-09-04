@@ -8,9 +8,9 @@ import WeatherForecast from '../../components/Weather/WeatherForecast/WeatherFor
 const LandingDisplay = () => {
     const { currentWeather, forecastWeather, loading } = useSelector(state => state.Weather);
     const dispatch = useDispatch();
-    const fetchWeatherData = useCallback(async () => {
+    const fetchWeatherData = useCallback(async (city) => {
       try {
-        await dispatch(fetchCurrentWeather()).unwrap();
+        await dispatch(fetchCurrentWeather(city)).unwrap();
       } catch (error) {
         console.log(error);
       }
@@ -21,7 +21,7 @@ const LandingDisplay = () => {
   }, [fetchWeatherData]);
   return (
       <div className='landing-container'>
-        <Select />
+        <Select onSelectChange = {fetchWeatherData}  />
         {loading ? <div className='spinner-container'>
           <Spinner color="info" size="5xl" className="h-12 w-12" />
         </div> : ''}
