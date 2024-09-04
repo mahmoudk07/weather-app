@@ -1,27 +1,8 @@
 import React from 'react'
-import { WiHumidity } from "react-icons/wi";
-import { WiWindBeaufort0 } from "react-icons/wi";
-import { LuGauge } from "react-icons/lu";
 import { PiArrowUpBold } from "react-icons/pi";
 import { PiArrowDownBold } from "react-icons/pi";
 import { getWeatherStatusImage } from '../../../utils/getWeatherStatusImage';
-const weatherInfo = {
-    "humidity": {
-        "name": "Humidity",
-        "icon": <WiHumidity className='weather-info-icon' />,
-        "unit": "%"
-    },
-    "windspeedKmph": {
-        "name": "Wind",
-        "icon": <WiWindBeaufort0 className='weather-info-icon' />,
-        "unit": "km/h"
-    },
-    "pressure": {
-        "name": "Pressure",
-        "icon": <LuGauge className='weather-info-icon' />,
-        "unit": "mb"
-    },
-}
+import { weatherInfo } from '../../../constants';
 const WeatherSummary = ({ data, forecastWeather, currentCity, currentCountry }) => {
   return (
     <section className= 'weather-card'>
