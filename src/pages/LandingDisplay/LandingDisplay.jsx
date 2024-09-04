@@ -2,6 +2,7 @@ import React, { useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentWeather } from "../../services/weatherInfo/weatherSlice"
 import { Spinner } from "flowbite-react";
+import Select from "../../components/Select/Select.jsx"
 import WeatherInfo from './components/WeatherInfo.jsx';
 import WeatherForecast from './components/WeatherForecast.jsx';
 const LandingDisplay = () => {
@@ -19,17 +20,18 @@ const LandingDisplay = () => {
       fetchWeatherData();
   }, [fetchWeatherData]);
   return (
-    <div className='landing-container'>
-      {loading ? <div className='spinner-container'>
-        <Spinner color="info" size="5xl" className="h-12 w-12" />
-      </div> : ''}
-      {!loading && currentWeather ? 
-        <>
-          <WeatherInfo data={currentWeather} forecastWeather = {forecastWeather[0]} />
-          <WeatherForecast forecastWeather={forecastWeather} />
-        </> : ''
-      }
-    </div>
+      <div className='landing-container'>
+        <Select />
+        {loading ? <div className='spinner-container'>
+          <Spinner color="info" size="5xl" className="h-12 w-12" />
+        </div> : ''}
+        {!loading && currentWeather ?
+          <>
+            <WeatherInfo data={currentWeather} forecastWeather={forecastWeather[0]} />
+            <WeatherForecast forecastWeather={forecastWeather} />
+          </> : ''
+        }
+      </div>
   )
 }
 export default LandingDisplay
