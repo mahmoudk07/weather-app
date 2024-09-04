@@ -8,11 +8,11 @@ import WeatherForecast from '../../components/Weather/WeatherForecast/WeatherFor
 import LineChart from '../../components/Charts/LineChart/LineChart'
 import RainfallChart from "../../components/Charts/RainfallChart/RainfallChart"
 const CityDashboard = () => {
-  const { loading, currentWeather, forecastWeather, historicalWeather } = useSelector(state => state.Weather)
+  const { loading, currentWeather, forecastWeather, historicalWeather, city } = useSelector(state => state.Weather)
   const dispatch = useDispatch();
-  const fetchWeatherData = useCallback(async () => {
+  const fetchWeatherData = useCallback(async (city) => {
     try {
-      await dispatch(fetchCurrentWeather()).unwrap();
+      await dispatch(fetchCurrentWeather(city)).unwrap();
     } catch (error) {
       console.log(error);
     }
@@ -24,7 +24,7 @@ const CityDashboard = () => {
   return (
     <div className='weather-dashboard-container'>
       <div className = 'select-container'>
-        <Select />
+        <Select onSelectChange = {fetchWeatherData} />
       </div>
       {loading ? <div className='spinner-container'>
         <Spinner color="info" size="5xl" className="h-12 w-12" />
@@ -32,7 +32,7 @@ const CityDashboard = () => {
       {!loading && currentWeather ? 
         <>
           <div className='weather-dashboard-upper'>
-            <WeatherSummary data={currentWeather} forecastWeather={forecastWeather[0]} />
+            <WeatherSummary data={currentWeather} forecastWeather={forecastWeather[0]} currentCity={city} />
             <LineChart data={historicalWeather} />
           </div>
           <div className='weather-dashboard-lower'>
