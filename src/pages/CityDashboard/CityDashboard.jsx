@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Spinner } from "flowbite-react";
 import { fetchCurrentWeather } from '../../services/weatherInfo/weatherSlice'
 import Select from "../../components/Select/Select"
-import WeatherSummary from '../../components/WeatherSummary/WeatherSummary'
-import WeatherForecast from '../../components/WeatherForecast/WeatherForecast'
+import WeatherSummary from '../../components/Weather/WeatherSummary/WeatherSummary'
+import WeatherForecast from '../../components/Weather/WeatherForecast/WeatherForecast'
 import LineChart from '../../components/LineChart/LineChart'
 import RainfallChart from "../../components/RainfallChart/RainfallChart"
 const CityDashboard = () => {

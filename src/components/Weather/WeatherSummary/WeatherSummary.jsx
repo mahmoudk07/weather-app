@@ -4,7 +4,7 @@ import { WiWindBeaufort0 } from "react-icons/wi";
 import { LuGauge } from "react-icons/lu";
 import { PiArrowUpBold } from "react-icons/pi";
 import { PiArrowDownBold } from "react-icons/pi";
-import { getWeatherStatusImage } from '../../utils/getWeatherStatusImage';
+import { getWeatherStatusImage } from '../../../utils/getWeatherStatusImage';
 const weatherInfo = {
     "humidity": {
         "name": "Humidity",

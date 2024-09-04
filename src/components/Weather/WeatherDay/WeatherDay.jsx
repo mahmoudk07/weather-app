@@ -1,5 +1,5 @@
 import React from 'react'
-import { getWeatherStatusImage } from "../../utils/getWeatherStatusImage"
+import { getWeatherStatusImage } from "../../../utils/getWeatherStatusImage"
 const WeatherDay = ({key, day, forecastWeather}) => {
   return (
     <div className= 'weather-day-container' key = {key}>
