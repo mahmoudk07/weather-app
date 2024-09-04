@@ -1,8 +1,8 @@
 import React from 'react'
 import { getWeatherStatusImage } from "../../../utils/getWeatherStatusImage"
-const WeatherDay = ({key, day, forecastWeather}) => {
+const WeatherDay = ({day, forecastWeather}) => {
   return (
-    <div className= 'weather-day-container' key = {key}>
+    <div className= 'weather-day-container'>
       <p className='weather-day'>{day}</p>
       <figure className='w-[60px] h-[60px]'>
           <img className='w-[100%] h-[100%]' src={getWeatherStatusImage(forecastWeather.hourly[2].weatherDesc[0].value)} alt="current weather status" />
