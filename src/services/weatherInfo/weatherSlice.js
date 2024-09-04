@@ -10,7 +10,13 @@ export const fetchCurrentWeather = createAsyncThunk("weather/currentWeather", as
         const { latitude, longitude } = await getCurrentLocation();
         const country = await getCurrentCity(latitude, longitude);
         const cities = await getCitiesByCountry(country);
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}?key=${process.env.REACT_APP_API_KEY}&q=${country}&num_of_days=7&ts=1&format=json`)
+        const response = data
+          ? await axios.get(
+              `${process.env.REACT_APP_API_URL}?key=${process.env.REACT_APP_API_KEY}&q=${data}&num_of_days=7&ts=1&format=json`
+            )
+          : await axios.get(
+              `${process.env.REACT_APP_API_URL}?key=${process.env.REACT_APP_API_KEY}&q=${country}&num_of_days=7&ts=1&format=json`
+            );
         return { weatherData: response.data.data, cities: cities.data.slice(0, 41) };
     } catch (error) {
         return rejectWithValue(error.response.data)
