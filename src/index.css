@@ -5,10 +5,10 @@
 
 @layer components {
     .header{
-        @apply flex items-center w-full h-[8vh] font-bold mb-0 pt-3
+        @apply flex items-center w-full h-[8vh] font-bold mb-0 pt-3 justify-between px-[7%]
     }
     .header-logo{
-        @apply flex items-center gap-x-3 px-[7%]
+        @apply flex items-center gap-x-3 
     }
     .header-text{
         @apply text-[#2e5d8b] text-[20px] justify-start
