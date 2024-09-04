@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCurrentWeather } from "../../services/weatherInfo/weatherSlice"
 import { Spinner } from "flowbite-react";
 import Select from "../../components/Select/Select.jsx"
-import WeatherInfo from './components/WeatherInfo.jsx';
-import WeatherForecast from './components/WeatherForecast.jsx';
+import WeatherSummary from '../../components/WeatherSummary/WeatherSummary.jsx';
+import WeatherForecast from '../../components/WeatherForecast/WeatherForecast.jsx';
 const LandingDisplay = () => {
     const { currentWeather, forecastWeather, loading } = useSelector(state => state.Weather);
     const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const LandingDisplay = () => {
         </div> : ''}
         {!loading && currentWeather ?
           <>
-            <WeatherInfo data={currentWeather} forecastWeather={forecastWeather[0]} />
+            <WeatherSummary data={currentWeather} forecastWeather={forecastWeather[0]} />
             <WeatherForecast forecastWeather={forecastWeather} />
           </> : ''
         }

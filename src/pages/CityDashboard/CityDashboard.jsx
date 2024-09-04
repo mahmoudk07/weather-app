@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Spinner } from "flowbite-react";
 import { fetchCurrentWeather } from '../../services/weatherInfo/weatherSlice'
 import Select from "../../components/Select/Select"
-import WeatherInfo from '../LandingDisplay/components/WeatherInfo'
-import WeatherForecast from '../LandingDisplay/components/WeatherForecast'
+import WeatherSummary from '../../components/WeatherSummary/WeatherSummary'
+import WeatherForecast from '../../components/WeatherForecast/WeatherForecast'
 import LineChart from '../../components/LineChart/LineChart'
-import RainfallChart from "../../components/LineChart/RainfallChart"
+import RainfallChart from "../../components/RainfallChart/RainfallChart"
 const CityDashboard = () => {
   const { loading, currentWeather, forecastWeather, historicalWeather } = useSelector(state => state.Weather)
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ const CityDashboard = () => {
       {!loading && currentWeather ? 
         <>
           <div className='weather-dashboard-upper'>
-            <WeatherInfo data={currentWeather} forecastWeather={forecastWeather[0]} />
+            <WeatherSummary data={currentWeather} forecastWeather={forecastWeather[0]} />
             <LineChart data={historicalWeather} />
           </div>
           <div className='weather-dashboard-lower'>

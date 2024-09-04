@@ -1,5 +1,5 @@
 import React from 'react'
-import WeatherDay from './WeatherDay'
+import WeatherDay from '../WeatherDay/WeatherDay'
 
 const WeatherForecast = ({ forecastWeather }) => {
   const today = new Date().getDay();

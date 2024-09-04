@@ -4,7 +4,7 @@ import { WiWindBeaufort0 } from "react-icons/wi";
 import { LuGauge } from "react-icons/lu";
 import { PiArrowUpBold } from "react-icons/pi";
 import { PiArrowDownBold } from "react-icons/pi";
-import { getWeatherStatusImage } from '../../../utils/getWeatherStatusImage';
+import { getWeatherStatusImage } from '../../utils/getWeatherStatusImage';
 const weatherInfo = {
     "humidity": {
         "name": "Humidity",
@@ -22,7 +22,7 @@ const weatherInfo = {
         "unit": "mb"
     },
 }
-const WeatherInfo = ({ data, forecastWeather }) => {
+const WeatherSummary = ({ data, forecastWeather }) => {
   return (
     <section className= 'weather-card'>
         <header>
@@ -66,4 +66,4 @@ const WeatherInfo = ({ data, forecastWeather }) => {
     </section>
   )
 }
-export default WeatherInfo
+export default WeatherSummary
