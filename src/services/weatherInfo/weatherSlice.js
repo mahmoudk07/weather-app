@@ -26,6 +26,7 @@ export const fetchCurrentWeather = createAsyncThunk("weather/currentWeather", as
 // initial state for weather slice
 const initialState = {
   country: null,
+  city: null,
   currentWeather: null,
   forecastWeather: null,
   historicalWeather: null,
@@ -45,6 +46,7 @@ const WeatherSlice = createSlice({
         builder.addCase(fetchCurrentWeather.fulfilled, (state, action) => {
             state.loading = false;
             state.country = action.payload.weatherData.request[0].query.split(", ")[1];
+            state.city = action.payload.weatherData.request[0].query
             state.currentWeather = action.payload.weatherData.current_condition[0];
             state.forecastWeather = action.payload.weatherData.weather;
             state.historicalWeather = action.payload.weatherData.ClimateAverages[0].month;
