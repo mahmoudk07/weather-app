@@ -17,10 +17,10 @@ const CityDashboard = () => {
       console.log(error);
     }
   }, [dispatch]);
-  useEffect(() => {
-    // eslint-disable-next-line
-    fetchWeatherData();
-  }, [fetchWeatherData]);
+  // useEffect(() => {
+  //   // eslint-disable-next-line
+  //   fetchWeatherData();
+  // }, [fetchWeatherData]);
   return (
     <div className='weather-dashboard-container'>
       <div className = 'select-container'>
