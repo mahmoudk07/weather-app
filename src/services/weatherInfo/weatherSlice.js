@@ -38,7 +38,11 @@ const initialState = {
 const WeatherSlice = createSlice({
     name: "weather", 
     initialState,
-    reducers: {},
+    reducers: {
+        changeSelectedCity: (state, action) => {
+            state.city = action.payload;
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchCurrentWeather.pending, (state) => {
             state.loading = true;
@@ -46,7 +50,7 @@ const WeatherSlice = createSlice({
         builder.addCase(fetchCurrentWeather.fulfilled, (state, action) => {
             state.loading = false;
             state.country = action.payload.weatherData.request[0].query.split(", ")[1];
-            state.city = action.payload.weatherData.request[0].query
+            state.city = action.payload.weatherData.request[0].query.split(", ")[0];
             state.currentWeather = action.payload.weatherData.current_condition[0];
             state.forecastWeather = action.payload.weatherData.weather;
             state.historicalWeather = action.payload.weatherData.ClimateAverages[0].month;
@@ -58,5 +62,5 @@ const WeatherSlice = createSlice({
         })
     }
 })
-
+export const { changeSelectedCity } = WeatherSlice.actions;
 export default WeatherSlice.reducer;

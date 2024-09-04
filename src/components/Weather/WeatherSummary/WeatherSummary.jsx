@@ -22,7 +22,7 @@ const weatherInfo = {
         "unit": "mb"
     },
 }
-const WeatherSummary = ({ data, forecastWeather, currentCity }) => {
+const WeatherSummary = ({ data, forecastWeather, currentCity, currentCountry }) => {
   return (
     <section className= 'weather-card'>
         <header>
@@ -30,7 +30,7 @@ const WeatherSummary = ({ data, forecastWeather, currentCity }) => {
         </header>
         <main className = 'weather-content'>
             <div className = 'weather-content-left'>
-                <p className='current-location'>{currentCity}</p>
+                <p className='current-location'>{currentCity + ", " + currentCountry}</p>
                 <div className = 'flex items-center'>
                     <figure className = 'weather-icon'>
                         <img className='w-[100%] h-[100%]' src={getWeatherStatusImage(data.weatherDesc[0].value)} alt="current weather status" />
