@@ -1,35 +1,26 @@
-import React, { useEffect, useCallback } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import useWeatherData from '../../hooks/useWeatherData';
 import { Spinner } from "flowbite-react";
-import { fetchCurrentWeather } from '../../services/weatherInfo/weatherSlice'
 import Select from "../../components/Select/Select"
 import WeatherSummary from '../../components/Weather/WeatherSummary/WeatherSummary'
 import WeatherForecast from '../../components/Weather/WeatherForecast/WeatherForecast'
 import LineChart from '../../components/Charts/LineChart/LineChart'
 import RainfallChart from "../../components/Charts/RainfallChart/RainfallChart"
 const CityDashboard = () => {
-  const { loading, currentWeather, forecastWeather, historicalWeather, city } = useSelector(state => state.Weather)
-  const dispatch = useDispatch();
-  const fetchWeatherData = useCallback(async (city) => {
-    try {
-      await dispatch(fetchCurrentWeather(city)).unwrap();
-    } catch (error) {
-      console.log(error);
-    }
-  }, [dispatch]);
-  // useEffect(() => {
-  //   // eslint-disable-next-line
-  //   fetchWeatherData();
-  // }, [fetchWeatherData]);
+  const { loading, currentWeather, forecastWeather, historicalWeather, city, fetchWeatherData } = useWeatherData();
+  useEffect(() => {
+    // eslint-disable-next-line
+    fetchWeatherData(city);
+  }, [fetchWeatherData, city]);
   return (
     <div className='weather-dashboard-container'>
       <div className = 'select-container'>
         <Select onSelectChange = {fetchWeatherData} />
       </div>
-      {loading ? <div className='spinner-container'>
+      {loading && ( <div className='spinner-container'>
         <Spinner color="info" size="5xl" className="h-12 w-12" />
-      </div> : ''}
-      {!loading && currentWeather ? 
+      </div> )}
+      {!loading && currentWeather && ( 
         <>
           <div className='weather-dashboard-upper'>
             <WeatherSummary data={currentWeather} forecastWeather={forecastWeather[0]} currentCity={city} />
@@ -40,7 +31,7 @@ const CityDashboard = () => {
             <RainfallChart data={historicalWeather} />
           </div>
         </>
-      : ''}
+      )}
     </div>
   )
 }
