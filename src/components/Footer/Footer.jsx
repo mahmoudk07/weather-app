@@ -1,8 +1,15 @@
 import React from 'react'
-
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
 const Footer = () => {
   return (
-    <div className = 'bottom-0 left-0 w-full'>Footer</div>
+    <footer className='footer'>
+      <p className = 'footer-text'>© 2024 This website is designed and developed by Mahmoud Khaled —</p>
+      <div className = 'footer-icons'>
+        <FaGithub />
+        <FaLinkedin />
+      </div>
+    </footer>
   )
 }
 
