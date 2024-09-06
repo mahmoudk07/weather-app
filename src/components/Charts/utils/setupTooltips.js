@@ -11,6 +11,7 @@ export const setupTooltips = (svg, data, xScale, yScale, type) => {
     .style("position", "absolute")
     .style("background-color", "#333")
     .style("color", "#fff")
+    .style("font-size", "12px")
     .style("padding", "5px 10px")
     .style("border-radius", "4px")
     .style("opacity", 0);

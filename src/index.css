@@ -132,4 +132,6 @@
 body {
     background: #050f26;
     font-family: 'Neue Plak';
+    overflow-x: hidden;
+    max-width: 100vw;
 }
