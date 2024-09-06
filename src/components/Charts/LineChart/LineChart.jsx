@@ -41,7 +41,7 @@ const LineChart = ({ data }) => {
 
     useEffect(() => {
         const svg = d3.select(svgRef.current);
-
+        
         // Clear previous content
         svg.selectAll('*').remove();
 
