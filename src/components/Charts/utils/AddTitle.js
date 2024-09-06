@@ -1,4 +1,8 @@
-export const AddTitle = (svg, width) => {
+export const AddTitle = (svg, width, type) => {
+    const title =
+      type === "line"
+        ? "Min/Max Temeratures over a year in °C"
+        : "Average Daily Rainfall in mm ";
     svg
         .append("text")
         .attr("x", width / 2)
@@ -7,5 +11,5 @@ export const AddTitle = (svg, width) => {
         .style("font-size", "14px")
         .style("font-weight", "bold")
         .style("fill", "#cfcfcf")
-        .text("Min/Max Temeratures over a year in °C");
+        .text(title);
 }
