@@ -16,8 +16,8 @@ const WeatherDetails = ({data , forecastWeather}) => {
               </div>
           </div>
           {Object.entries(weatherInfo).map(([key, info]) => (
-              <div className='flex justify-between items-center gap-x-3' key={key}>
-                  <div className='flex items-center gap-x-4'>
+              <div className='flex justify-between items-center xss:gap-x-3' key={key}>
+                  <div className='flex items-center xss:gap-x-3 xs:gap-x-4'>
                       {info.icon}
                       <p className='weather-info-type'>{info.name}</p>
                   </div>
