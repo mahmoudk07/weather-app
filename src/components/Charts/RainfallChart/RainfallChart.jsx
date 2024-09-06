@@ -43,8 +43,8 @@ const RainfallChart = ({ data }) => {
 
     }, [data, dimensions, xScale, yScale, width, height, margin]);
     return (
-        <div className="">
-            <svg ref={svgRef}></svg>
+        <div className="chart-container">
+            <svg ref={svgRef} className = "w-full"></svg>
         </div>
     );
 };

@@ -41,7 +41,7 @@ const LineChart = ({ data }) => {
 
     useEffect(() => {
         const svg = d3.select(svgRef.current);
-        
+
         // Clear previous content
         svg.selectAll('*').remove();
 
@@ -55,8 +55,8 @@ const LineChart = ({ data }) => {
     }, [data, width, height, margin, xScale, yScale, lineMin, lineMax]);
 
     return (
-        <div className="">
-            <svg ref={svgRef}></svg>
+        <div className="chart-container">
+            <svg ref={svgRef} className = "w-full "></svg>
         </div>
     );
 };
