@@ -8,6 +8,7 @@ module.exports = {
         "weatherCard-bg": "rgba(47, 53, 64, 255)",
       },
       screens: {
+        xss: "400px",
         xs: "470px",
       },
     },
