@@ -96,7 +96,7 @@
         @apply font-semibold text-[#46668f] xss:text-[14px] sm:text-[14px] xl:text-[13px]
     }
     .weather-dashboard-container{
-        @apply w-full min-h-[90vh] px-[3%] mb-6 
+        @apply w-full min-h-[90vh] px-[3%] mb-6
     }
     .weather-dashboard-upper{
         @apply flex xss:flex-col lg:flex-row md:items-center items-start gap-5 mb-5 justify-around mt-5
@@ -128,9 +128,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x: hidden;
 }
 body {
     background: #050f26;
     font-family: 'Neue Plak';
-    overflow-x: hidden;
 }
