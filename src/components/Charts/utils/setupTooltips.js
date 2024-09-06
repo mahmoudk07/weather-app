@@ -17,9 +17,17 @@ export const setupTooltips = (svg, data, xScale, yScale, type) => {
   
   // Function to handle mouseOver event
   const handleMouseOver = (event, d, Type, unit) => {
+    let type = null
+    if (Type === 'avgDailyRainfall') 
+      type = 'Rainfall'
+    else if (Type === 'avgMinTemp')
+      type = 'Min'
+    else
+      type = 'Max'
+    console.log(event.pageX, event.pageY)
     tooltip.transition().duration(200).style("opacity", 0.9);
     tooltip
-      .html(`${Type}: ${d[Type]}${unit}`)
+      .html(`${type}: ${d[Type]}${unit}`)
       .style("left", event.pageX + 5 + "px")
       .style("top", event.pageY - 28 + "px");
   };
