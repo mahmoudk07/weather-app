@@ -38,7 +38,7 @@ const RainfallChart = ({ data }) => {
         setupBarAxes(svg, width, height, margin, xScale, yScale);
         drawRainfallBars(svg, data, xScale, yScale, height, margin);
         setupTooltips(svg, data, xScale, yScale, "bar");
-        AddTitle(svg, width);
+        AddTitle(svg, width, "bar");
 
     }, [data, dimensions, xScale, yScale, width, height, margin]);
     return (

@@ -49,7 +49,7 @@ const LineChart = ({ data }) => {
         setupAxes(svg, data, width, height, margin, xScale, yScale);
         drawTemperatureLines(svg, data, lineMin, lineMax);
         setupTooltips(svg, data, xScale, yScale, "circle");
-        AddTitle(svg, width);
+        AddTitle(svg, width, "line");
 
     }, [data, width, height, margin, xScale, yScale, lineMin, lineMax]);
 
