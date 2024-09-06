@@ -1,16 +1,20 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import LandingDisplay from "./pages/LandingDisplay/LandingDisplay";
-import CityDashboard from "./pages/CityDashboard/CityDashboard"
 import Layout from "./components/Layout/Layout";
+const LandingDisplay = lazy(() => import("./pages/LandingDisplay/LandingDisplay"));
+const CityDashboard = lazy(() => import("./pages/CityDashboard/CityDashboard"));
+
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<LandingDisplay />} />
-          <Route path="/city" element={<CityDashboard />} />
-        </Routes>
-      </Layout>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<LandingDisplay />} />
+            <Route path="/city" element={<CityDashboard />} />
+          </Routes>
+        </Layout>
+      </Suspense>
     </BrowserRouter>
   );
 }
