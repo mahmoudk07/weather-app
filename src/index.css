@@ -96,7 +96,7 @@
         @apply w-full min-h-[90vh] px-[3%] py-[1%] mb-6
     }
     .weather-dashboard-upper{
-        @apply flex xs:flex-col lg:flex-row md:items-center items-start gap-5 mb-5 justify-around
+        @apply flex xs:flex-col lg:flex-row md:items-center items-start gap-5 mb-5 justify-around mt-3
     }
     .weather-dashboard-lower{
         @apply flex xs:flex-col lg:flex-row md:items-center items-start gap-5 justify-around
