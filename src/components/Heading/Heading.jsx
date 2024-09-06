@@ -8,9 +8,9 @@ const Heading = () => {
         <img width={40} height={40} src={WeatherLogo} alt="weather logo" />
         <h1 className='header-text'>Weather Forecast</h1>
       </div>
-      <nav className = 'flex items-center gap-x-6'>
-        <Link to='/' className='text-[#2e5d8b] font-bold'>Home</Link>
-        <Link to='/city' className='text-[#2e5d8b] font-bold'>Dashboard</Link>
+      <nav className = 'header-links'>
+        <Link to='/' className='header-link'>Home</Link>
+        <Link to='/city' className='header-link'>Dashboard</Link>
       </nav>
     </div>
   )
