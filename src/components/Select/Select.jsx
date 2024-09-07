@@ -14,9 +14,15 @@ const Select = ({ onSelectChange }) => {
        <option disabled selected={ city ? false : true} hidden>
             Select a city
         </option>
-        {cities?.map(city => (
-            <option key={city} value={city}>{city}</option>
-        ))}
+      {cities?.map(city => {
+        const capitalizedCity = city.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+        return (
+          <option key={city} value={capitalizedCity}>
+            {capitalizedCity}
+          </option>
+        );
+      })}
+
     </select>
   )
 }

@@ -25,7 +25,6 @@ export const setupTooltips = (svg, data, xScale, yScale, type) => {
       type = 'Min'
     else
       type = 'Max'
-    console.log(event.pageX, event.pageY)
     tooltip.transition().duration(200).style("opacity", 0.9);
     tooltip
       .html(`${type}: ${d[Type]}${unit}`)
