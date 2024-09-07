@@ -122,6 +122,15 @@
     .chart-container{
         @apply xss:w-[100%] md:w-[85%] lg:w-[70%] xl:w-[45%]
     }
+    .error-container{
+        @apply fixed inset-0 flex items-center justify-center bg-opacity-50 z-50
+    }
+    .error-text{
+        @apply text-gray-500 font-extrabold text-3xl
+    }
+    .back-to-home{
+        @apply text-gray-300 cursor-pointer bg-[#2e5d8b] py-2 rounded-[15px] font-extrabold text-center
+    }
 }
 
 *{
