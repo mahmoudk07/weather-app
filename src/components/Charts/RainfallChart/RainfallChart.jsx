@@ -5,7 +5,6 @@ import { setupSvg } from "../utils/setupSvg";
 import { setupBarAxes } from "../utils/setupBarAxes";
 import { setupBackground } from "../utils/setupBackground";
 import { drawRainfallBars } from "../utils/drawBars";
-import { setupTooltips } from "../utils/setupTooltips";
 import { AddTitle } from "../utils/AddTitle";
 const RainfallChart = ({ data }) => {
     const svgRef = useRef();
@@ -38,7 +37,6 @@ const RainfallChart = ({ data }) => {
         setupBackground(svg, width, height);
         setupBarAxes(svg, width, height, margin, xScale, yScale);
         drawRainfallBars(svg, data, xScale, yScale, height, margin);
-        setupTooltips(svg, data, xScale, yScale, "bar");
         AddTitle(svg, width, "bar");
 
     }, [data, dimensions, xScale, yScale, width, height, margin]);
